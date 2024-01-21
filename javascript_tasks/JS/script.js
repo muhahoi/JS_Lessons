@@ -148,3 +148,30 @@
 //	return result;
 //}
 //thirdTask();
+
+//** Задача 5 */
+
+// Необходимо написать код, который при помощи звездочек (*) в консоли нарисует вот такую фигуру:
+
+//      *
+//     ***
+//    *****
+//   *******
+//  *********
+// ***********
+
+let star = '*';
+let length = 13;
+let result = '';
+let space = ' ';
+let spaceCount = (length - (length % 2)) / 2;
+
+for (let i = 0; i <= length - 1; i++) {
+	if (i % 2 !== 0) {
+		spaceCount -= 1;
+		result += space.repeat(spaceCount);
+		result += star.repeat(i);
+		result += '\n';
+	}
+}
+console.log(result);
