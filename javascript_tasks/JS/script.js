@@ -225,7 +225,7 @@
 // Место для третьей задачи
 //function getMathResult(number, multiplier) {
 //	let result = number;
-//	if (multiplier > 0 && multiplier !== isNaN) {
+//	if (multiplier > 0 && typeof multiplier === 'number') {
 //		for (let i = 2; i <= multiplier; i++) {
 //			result += '---' + number * i;
 //		}
