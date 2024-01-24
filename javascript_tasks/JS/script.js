@@ -418,3 +418,14 @@
 //	}
 //}
 //fib(2);
+////**callback */
+//function learnJS(lang, callback) {
+//	console.log(`Я учу ${lang}`);
+//	callback();
+//}
+
+//function done() {
+//	console.log('Я закончил урок');
+//}
+
+//learnJS('JavaScript', done);
