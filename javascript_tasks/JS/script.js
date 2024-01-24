@@ -491,14 +491,21 @@ const personalPlanPeter = {
 		},
 		exp: '1 month',
 	},
+	showAgeAndLangs(plan) {
+		let language = '';
+		for (let lang of plan.skills.languages) {
+			language += ` ${lang.toUpperCase()}`;
+		}
+		return `Мне ${plan.age} и я владею языками:${language}`;
+	},
 };
 
-//function showExperience(plan) {
-//	const { languages, programmingLangs, exp } = plan.skills;
-//	console.log(exp);
-//	return exp;
-//}
-//showExperience(personalPlanPeter);
+function showExperience(plan) {
+	const { exp } = plan.skills;
+	console.log(exp);
+	return exp;
+}
+showExperience(personalPlanPeter);
 
 // 2) Напишите функцию showProgrammingLangs, которая будет принимать в себя объект со всеми данными и возвращать строку в нужном виде.
 
@@ -523,22 +530,13 @@ const personalPlanPeter = {
 // Заметьте, что возраст и языки подставляются автоматически из объекта, а языки всегда в верхнем регистре (большими буквами). Если данные в объекте поменяются, то и сообщение тоже изменится.
 
 function showProgrammingLangs(plan) {
-	//for (let key in plan[skills][programmingLangs]) {
-	//	console.log(`Язык ${key} изучен на ${plan[skills][programmingLangs][key]}`);
-	//}
-	//	return exp;
-	let newObj = {};
+	let result = '';
 	for (let key in plan.skills.programmingLangs) {
-		newObj[key] = plan.skills.programmingLangs[key];
+		if (key) {
+			result += `Язык ${key} изучен на ${plan.skills.programmingLangs[key]}\n`;
+		} else {
+			return '';
+		}
 	}
-	console.log(newObj);
-
-	//for (let key in plan) {
-	//	if (plan[key] == 'programmingLangs') {
-	//		for (let i in plan[key]) {
-	//			console.log(`Свойство ${i} имеет значение ${plan[key][i]}`);
-	//		}
-	//	}
-	//}
 }
-showProgrammingLangs(personalPlanPeter);
+personalPlanPeter.showAgeAndLangs(personalPlanPeter);
