@@ -325,42 +325,42 @@
 // getTimeFromMinutes(-150) => "Ошибка, проверьте данные"
 
 // Место для первой задачи
-function getTimeFromMinutes(time) {
-	if (typeof time !== 'number' || time < 0 || time % 1 !== 0) {
-		return 'Ошибка, проверьте данные';
-	} else {
-		let hour = Math.trunc(time / 60);
-		let minutes = time - hour * 60;
-		let lastDigitHour = hour % 10;
-		let lastDigitMinutes = minutes % 10;
-		let hourText;
-		let minutesText;
-		if (lastDigitHour === 1) {
-			hourText = 'час';
-		} else if (
-			lastDigitHour === 2 ||
-			lastDigitHour === 3 ||
-			lastDigitHour === 4
-		) {
-			hourText = 'часa';
-		} else {
-			hourText = 'часов';
-		}
-		if (lastDigitMinutes === 1) {
-			minutesText = 'минута';
-		} else if (
-			lastDigitMinutes === 2 ||
-			lastDigitMinutes === 3 ||
-			lastDigitMinutes === 4
-		) {
-			minutesText = 'минуты';
-		} else {
-			minutesText = 'минут';
-		}
-		return `Это ${hour} ${hourText} и ${minutes} ${minutesText}`;
-	}
-}
-getTimeFromMinutes();
+//function getTimeFromMinutes(time) {
+//	if (typeof time !== 'number' || time < 0 || time % 1 !== 0) {
+//		return 'Ошибка, проверьте данные';
+//	} else {
+//		let hour = Math.trunc(time / 60);
+//		let minutes = time - hour * 60;
+//		let lastDigitHour = hour % 10;
+//		let lastDigitMinutes = minutes % 10;
+//		let hourText;
+//		let minutesText;
+//		if (lastDigitHour === 1) {
+//			hourText = 'час';
+//		} else if (
+//			lastDigitHour === 2 ||
+//			lastDigitHour === 3 ||
+//			lastDigitHour === 4
+//		) {
+//			hourText = 'часa';
+//		} else {
+//			hourText = 'часов';
+//		}
+//		if (lastDigitMinutes === 1) {
+//			minutesText = 'минута';
+//		} else if (
+//			lastDigitMinutes === 2 ||
+//			lastDigitMinutes === 3 ||
+//			lastDigitMinutes === 4
+//		) {
+//			minutesText = 'минуты';
+//		} else {
+//			minutesText = 'минут';
+//		}
+//		return `Это ${hour} ${hourText} и ${minutes} ${minutesText}`;
+//	}
+//}
+//getTimeFromMinutes();
 // 2) Напишите функцию, которая принимает в себя 4 числа и возвращает самое большее из них. Если один из аргументов не является числом или их меньше 4 - возвращается 0. Дробные числа разрешены.
 
 // Пример:
@@ -370,16 +370,51 @@ getTimeFromMinutes();
 // findMaxNumber(1, 5, '6', '10');  =>  0
 
 // Место для второй задачи
-function findMaxNumber(a, b, c, d) {
-	if (
-		typeof a !== 'number' ||
-		typeof b !== 'number' ||
-		typeof c !== 'number' ||
-		typeof d !== 'number'
-	) {
-		return 0;
-	} else {
-		return Math.max(a, b, c, d);
-	}
-}
-findMaxNumber(21, 12, 3, 4);
+//function findMaxNumber(a, b, c, d) {
+//	if (
+//		typeof a !== 'number' ||
+//		typeof b !== 'number' ||
+//		typeof c !== 'number' ||
+//		typeof d !== 'number'
+//	) {
+//		return 0;
+//	} else {
+//		return Math.max(a, b, c, d);
+//	}
+//}
+//findMaxNumber(21, 12, 3, 4);
+
+//** Задача 9 */
+// Создайте функцию, которая будет принимать в себя один аргумент-целое положительное число. Она должна возвращать строку, в которой будут через пробел выведены числа Фибоначчи. Причем, их количество должно быть равно переданному аргументу.
+
+// Если переданный аргумент не число - вернуть пустую строку. Решать без применения рекурсии.
+
+// Пример:
+
+// fib(4) => "0 1 1 2"
+
+// fib(7) => "0 1 1 2 3 5 8"
+
+// fib('7') => ""
+
+// fib(1) => "0"
+
+// fib(0) => ""
+
+//function fib(number) {
+//	if (typeof number !== 'number' || number <= 0 || number % 1 !== 0) {
+//		console.log('пусто');
+//		return '';
+//	} else if (number === 1) {
+//		console.log('0');
+//		return 0;
+//	} else {
+//		let arr = [0, 1];
+//		for (let i = 0; i <= number - 3; i++) {
+//			arr.push(arr[arr.length - 1] + arr[arr.length - 2]);
+//		}
+//		console.log(arr.join(' '));
+//		return arr.join(' ');
+//	}
+//}
+//fib(2);
