@@ -633,18 +633,43 @@
 
 //reverse(someString);
 
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
-const arr = baseCurrencies.concat(additionalCurrencies);
+//const baseCurrencies = ['USD', 'EUR'];
+//const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+//const arr = baseCurrencies.concat(additionalCurrencies);
 
-function availableCurr(arr, missingCurr) {
-	let result = `Доступные валюты:\n`;
-	!arr.length
-		? (result = 'Нет доступных валют')
-		: arr.forEach(element => {
-				element !== missingCurr ? (result += `${element}\n`) : result;
-		  });
-	return result;
-}
-//availableCurr(arr, 'CNY');
-console.log(availableCurr(arr, 'CNY'));
+//function availableCurr(arr, missingCurr) {
+//	let result = `Доступные валюты:\n`;
+//	!arr.length
+//		? (result = 'Нет доступных валют')
+//		: arr.forEach(element => {
+//				element !== missingCurr ? (result += `${element}\n`) : result;
+//		  });
+//	return result;
+//}
+////availableCurr(arr, 'CNY');
+//console.log(availableCurr(arr, 'CNY'));
+
+//** Основы ООП, прототипно-ориентированное наследование */
+
+const soldier = {
+	health: 400,
+	armor: 100,
+};
+//**старое создание прототипа */
+//const john = {
+//	health: 100,
+//};
+//john.__proto__ = soldier; // устаревший метод
+//Object.setPrototypeOf(john, soldier); // новый метод
+//**современное создание прототипа */
+const john = Object.create(soldier);
+
+console.log(john); // { health: 100 }
+
+console.log(john.armor); // 100
+
+soldier.sayHello = function () {
+	console.log('Hello!');
+};
+
+john.sayHello(); // Hello!
