@@ -480,32 +480,32 @@
 // showExperience(personalPlanPeter) => '1 month'
 
 // P.S. желательно использовать деструктуризацию, но не обязательно
-const personalPlanPeter = {
-	name: 'Peter',
-	age: '29',
-	skills: {
-		languages: ['ru', 'eng'],
-		programmingLangs: {
-			js: '20%',
-			php: '10%',
-		},
-		exp: '1 month',
-	},
-	showAgeAndLangs(plan) {
-		let language = '';
-		for (let lang of plan.skills.languages) {
-			language += ` ${lang.toUpperCase()}`;
-		}
-		return `Мне ${plan.age} и я владею языками:${language}`;
-	},
-};
+//const personalPlanPeter = {
+//	name: 'Peter',
+//	age: '29',
+//	skills: {
+//		languages: ['ru', 'eng'],
+//		programmingLangs: {
+//			js: '20%',
+//			php: '10%',
+//		},
+//		exp: '1 month',
+//	},
+//	showAgeAndLangs(plan) {
+//		let language = '';
+//		for (let lang of plan.skills.languages) {
+//			language += ` ${lang.toUpperCase()}`;
+//		}
+//		return `Мне ${plan.age} и я владею языками:${language}`;
+//	},
+//};
 
-function showExperience(plan) {
-	const { exp } = plan.skills;
-	console.log(exp);
-	return exp;
-}
-showExperience(personalPlanPeter);
+//function showExperience(plan) {
+//	const { exp } = plan.skills;
+//	console.log(exp);
+//	return exp;
+//}
+//showExperience(personalPlanPeter);
 
 // 2) Напишите функцию showProgrammingLangs, которая будет принимать в себя объект со всеми данными и возвращать строку в нужном виде.
 
@@ -529,14 +529,122 @@ showExperience(personalPlanPeter);
 
 // Заметьте, что возраст и языки подставляются автоматически из объекта, а языки всегда в верхнем регистре (большими буквами). Если данные в объекте поменяются, то и сообщение тоже изменится.
 
-function showProgrammingLangs(plan) {
-	let result = '';
-	for (let key in plan.skills.programmingLangs) {
-		if (key) {
-			result += `Язык ${key} изучен на ${plan.skills.programmingLangs[key]}\n`;
-		} else {
-			return '';
-		}
-	}
+//function showProgrammingLangs(plan) {
+//	let result = '';
+//	for (let key in plan.skills.programmingLangs) {
+//		if (key) {
+//			result += `Язык ${key} изучен на ${plan.skills.programmingLangs[key]}\n`;
+//		} else {
+//			return '';
+//		}
+//	}
+//}
+//personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+
+//**Упражнение по написанию кода 11 */
+// 1) Напишите функцию showFamily, которая будет принимать в себя массив строк и возвращать сообщение в нужном формате.
+
+// showFamily(family)  => 'Семья состоит из: Peter Ann Alex Linda'
+
+// Имена подставляются автоматически из массива. Если массив пустой, то выводится сообщение 'Семья пуста'
+
+// 2) напишите функцию standardizeStrings, которая будет принимать в себя массив строк и будет выводить в консоль эти строки в нижнем регистре.
+
+// Пример:
+
+// standardizeStrings(favoriteCities)  выведет в консоль
+
+// lisbon
+// rome
+// milan
+// dublin
+
+//const family = ['Peter', 'Ann', 'Alex', 'Linda'];
+
+//function showFamily(arr) {
+//	if (arr.length > 0) {
+//		console.log(`Семья состоит из: ${arr.join(' ')}`);
+//	} else {
+//		console.log('Семья пуста');
+//	}
+//}
+//showFamily(family);
+
+//const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
+
+//function standardizeStrings(arr) {
+//	arr.forEach(element => {
+//		console.log(element.toLowerCase());
+//	});
+//}
+//standardizeStrings(favoriteCities);
+
+//**Упражнение по написанию кода 12 */
+
+// 3) Задача с собеседований. Напишите функцию reverse, которая принимает в себя строку и возвращает эту строку в обратном порядке.
+
+// Пример:
+
+// const someString = 'This is some strange string';
+
+// reverse(someString) => 'gnirts egnarts emos si sihT'
+
+// 4) Представьте такую реальную ситуацию. У вас есть банкомат, который выдает деньги из двух разных банков в разных валютах. Один банк основной с базовыми валютами, второй дополнительный с прочими валютами:
+
+// const baseCurrencies = ['USD', 'EUR'];
+// const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+// Вам нужно создать главную функцию банкомата availableCurr, которая принимает два аргумента: первый - это массив со всеми доступными валютами из двух банков сразу (сейчас представим, что они не могут повторяться), второй - необязательный аргумент, который указывает ту валюту, которая сейчас закончилась в банкомате. Если массив в первом аргументе пустой - то функция возвращает строку 'Нет доступных валют'. Функция возвращает строку в нужном виде.
+
+// Пример:
+
+// availableCurr(['UAH', 'RUB', 'CNY'], 'CNY')
+
+// Вернет строку:
+
+// Доступные валюты:
+// UAH
+// RUB
+
+// Заметьте:
+
+// - CNY (юань) исчез из списка валют, значит такая валюта закончилась
+
+// - После валюты: стоит перенос строки \n, и после каждой валюты тоже. Это важно для тестов
+
+// - Данные для первого аргумента должны приходить сразу из двух банков, причем сначала baseCurrencies, потом additionalCurrencies по порядку
+
+//const someString = 'This is some strange string';
+
+//function reverse(str) {
+//	if (typeof str === 'string') {
+//		let arr = [];
+//		for (let i = -1; i >= -someString.length; i--) {
+//			arr.push(someString.at(i));
+//		}
+//		console.log(arr);
+//		console.log(arr.join(''));
+//		return arr.join('');
+//	} else {
+//		console.log('Ошибка!');
+//		return 'Ошибка!';
+//	}
+//}
+
+//reverse(someString);
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+const arr = baseCurrencies.concat(additionalCurrencies);
+
+function availableCurr(arr, missingCurr) {
+	let result = `Доступные валюты:\n`;
+	!arr.length
+		? (result = 'Нет доступных валют')
+		: arr.forEach(element => {
+				element !== missingCurr ? (result += `${element}\n`) : result;
+		  });
+	return result;
 }
-personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+//availableCurr(arr, 'CNY');
+console.log(availableCurr(arr, 'CNY'));
