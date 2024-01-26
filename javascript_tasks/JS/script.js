@@ -651,10 +651,10 @@
 
 //** Основы ООП, прототипно-ориентированное наследование */
 
-const soldier = {
-	health: 400,
-	armor: 100,
-};
+//const soldier = {
+//	health: 400,
+//	armor: 100,
+//};
 //**старое создание прототипа */
 //const john = {
 //	health: 100,
@@ -662,14 +662,130 @@ const soldier = {
 //john.__proto__ = soldier; // устаревший метод
 //Object.setPrototypeOf(john, soldier); // новый метод
 //**современное создание прототипа */
-const john = Object.create(soldier);
+//const john = Object.create(soldier);
 
-console.log(john); // { health: 100 }
+//console.log(john); // { health: 100 }
 
-console.log(john.armor); // 100
+//console.log(john.armor); // 100
 
-soldier.sayHello = function () {
-	console.log('Hello!');
-};
+//soldier.sayHello = function () {
+//	console.log('Hello!');
+//};
 
-john.sayHello(); // Hello!
+//john.sayHello(); // Hello!
+
+//**Упражнение по написанию кода 13 **/
+
+// Написать функцию isBudgetEnough, которая буде возвращать строку. Если бюджета хватает для отопления всего объема торгового центра - выводится 'Бюджета достаточно', если нет - 'Бюджета недостаточно'
+
+// Но эта задача содержит несколько подзадач внутри:
+
+// - вычисление общей площади всех магазинов, которая вычисляется как длина магазина, умноженная на его ширину;
+
+// - вычисление общего объема торгового центра, так как цена отопления указана в кубических метрах;
+
+// - определение того, хватает ли бюджета на оплату такого объема;
+
+// - все числа идут без единиц измерения для упрощения, просто цифры и все;
+
+// - функция должна продолжать работать, даже если изменяется количество магазинов, высота, бюджет или подставляется вообще другой объект
+
+//const shoppingMallData = {
+//	shops: [
+//		{
+//			width: 10,
+//			length: 5,
+//		},
+//		{
+//			width: 15,
+//			length: 7,
+//		},
+//		{
+//			width: 20,
+//			length: 5,
+//		},
+//		{
+//			width: 8,
+//			length: 10,
+//		},
+//	],
+//	height: 5,
+//	moneyPer1m3: 30,
+//	budget: 50000,
+//};
+
+//function isBudgetEnough(data) {
+//	let volume = 0;
+//	for (let size of data.shops) {
+//		volume += size.width * size.length * data.height;
+//	}
+//	return volume * data.moneyPer1m3 > data.budget
+//		? 'Бюджета не достаточно'
+//		: 'Бюджета достаточно';
+//}
+//console.log(isBudgetEnough(shoppingMallData));
+
+//**Упражнение по написанию кода 14 */
+
+// У вас есть список учеников, которые хотят поиграть в игру:
+
+// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+
+// Но команд может быть только 3 по 3 человека. Напишите функцию sortStudentsByGroups, которая принимает в себя массив строк.
+
+// Внутри она сначала сортирует имена по алфавиту. Затем распределяет учеников по 3 человека в 3 группы по алфавитному порядку. Эти группы должны быть массивами. Как итог, функция возвращает новый массив с тремя командами и строкой как 4й элемент.
+
+// Пример:
+
+// sortStudentsByGroups(students)  =>
+
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: Takesi'
+// ]
+
+// Если убрать одно студента из списка, то результат будет:
+
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: -'
+// ]
+
+// А если добавить одного, то:
+
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: Takesi, Somebody'
+// ]
+
+// То есть, меняется содержимое строки. Все оставшиеся ученики попадают туда.
+
+const students = [
+	'Peter',
+	'Andrew',
+	'Ann',
+	'Mark',
+	'Josh',
+	'Sandra',
+	'Cris',
+	'Bernard',
+	'Takesi',
+	'Sam',
+];
+
+function sortStudentsByGroups(arr) {
+	let sortedArray = arr.sort();
+	let newArray;
+	for (let i = 0; i < sortedArray; i++) {
+		newArray[0].push;
+	}
+
+	console.log(newArr);
+}
+sortStudentsByGroups(students);
