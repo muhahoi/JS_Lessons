@@ -766,26 +766,61 @@
 
 // То есть, меняется содержимое строки. Все оставшиеся ученики попадают туда.
 
-const students = [
-	'Peter',
-	'Andrew',
-	'Ann',
-	'Mark',
-	'Josh',
-	'Sandra',
-	'Cris',
-	'Bernard',
-	'Takesi',
-	'Sam',
-];
+//const students = [
+//	'Peter',
+//	'Andrew',
+//	'Ann',
+//	'Mark',
+//	'Josh',
+//	'Sandra',
+//	'Cris',
+//	'8Sam',
+//	'9S9gam',
+//	'9S9gam',
+//	'9S9gam',
+//];
 
-function sortStudentsByGroups(arr) {
-	let sortedArray = arr.sort();
-	let newArray;
-	for (let i = 0; i < sortedArray; i++) {
-		newArray[0].push;
-	}
+//function sortStudentsByGroups(arr) {
+//	let sortedArray = arr.sort();
+//	let newArray = [[], [], [], `Оставшиеся студенты: ${sortedArray[9]}`];
+//	if (sortedArray.length === 9) {
+//		newArray[3] = 'Оставшиеся студенты: -';
+//	}
+//	for (let i = 0; i < sortedArray.length; i++) {
+//		switch (true) {
+//			case i < 3:
+//				newArray[0].push(sortedArray[i]);
+//				break;
+//			case i < 6:
+//				newArray[1].push(sortedArray[i]);
+//				break;
+//			case i < 9:
+//				newArray[2].push(sortedArray[i]);
+//				break;
+//			case i > 9:
+//				newArray[3] = newArray[3] + ', ' + sortedArray[i];
+//				break;
+//		}
+//	}
+//	return newArray;
+//}
 
-	console.log(newArr);
-}
-sortStudentsByGroups(students);
+//console.log(sortStudentsByGroups(students));
+
+////**Замыкание и лексическое окружение */
+//function createCounter() {
+//	let counter = 0;
+
+//	const myFunction = function () {
+//		counter += 1;
+//		return counter;
+//	};
+//	console.log(counter);
+//}
+//const increment = createCounter();
+
+//const c1 = increment();
+//const c2 = increment();
+//const c3 = increment();
+
+//console.log(c1, c2, c3);
