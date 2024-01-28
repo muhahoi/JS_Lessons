@@ -824,3 +824,51 @@
 //const c3 = increment();
 
 //console.log(c1, c2, c3);
+
+//**Задачи с собеседования */
+// Какое будет выведено значение: let x = 5; alert( x++ ); ? //5
+// Чему равно такое выражение: [ ] + false - null + true ? // NaN
+// Что выведет этот код: let y = 1; let x = y = 2; alert(x); ? 2
+// Чему равна сумма [ ] + 1 + 2? // '12'
+// Что выведет этот код: alert( '1'[0] )? // '1'
+// Чему равно 2 && 1 && null && 0 && undefined ? // null
+// Есть ли разница между выражениями? !!( a && b ) и (a && b)? //не равны
+// Что выведет этот код: alert( null || 2 && 3 || 4 ); ? // 3
+// a = [1, 2, 3]; b = [1, 2, 3]; Правда ли что a == b ? //нет
+// Что выведет этот код: alert( +'Infinity'); Infinity
+// Верно ли сравнение: 'Ёжик' > 'яблоко'? // false
+// Чему равно 0 || '' || 2 || undefined || true || falsе ? //2
+
+//**[] + false - null + true;
+
+//console.log([] + false); //'false' строка, т.к. [] === ''
+//console.log([] + false - null); // NaN
+//console.log([] + false - null + true); // NaN
+
+//**let y = 1; let x = y = 2; alert(x) */
+
+//let y = 1;
+//let x = (y = 2);
+//console.log(x); //2
+
+//**alert('1'[0]) */
+
+console.log('1'[0]); //'1'
+console.log('Привет'[3]); //'в'
+
+//**2 && 1 && null && 0 && undefined */
+
+console.log(2 && 1 && null && 0 && undefined); //null
+
+//** !!( a && b ) и (a && b) */
+
+console.log(!!(1 && 2)); //true;
+console.log(1 && 2); //2;
+
+//**alert( null || 2 && 3 || 4 ) */
+
+console.log(null || (2 && 3) || 4); //3
+
+//**alert( +'Infinity') */
+
+console.log(+'Infinity'); // Infinity
