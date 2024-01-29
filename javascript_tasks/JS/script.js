@@ -921,7 +921,7 @@ function isOpen(prop) {
 console.log(isOpen(restorantData.openNow));
 
 function isAverageLunchPriceTrue(fDish, sDish, average) {
-	if (+fDish.price.slice(0, -1) + sDish.price < average) {
+	if (parseInt(fDish.price) + parseInt(sDish.price) < parseInt(average)) {
 		return 'Цена ниже средней';
 	} else {
 		return 'Цена выше средней';
@@ -935,12 +935,41 @@ console.log(
 		restorantData.averageLunchPrice
 	)
 );
+//! Неправильное решение. Массивы превращаются в объекты
+//function transferWaitors(data) {
+//	//const copy = structuredClone(data);
 
+//	const copy = {};
+//	for (let key in data) {
+//		if (typeof data[key] === 'object') {
+//			copy[key] = {};
+//			for (let i in data[key]) {
+//				copy[key][i] = data[key][i];
+//			}
+//		} else {
+//			copy[key] = data[key];
+//		}
+//	}
+
+//	copy.waitors[0] = { name: 'Mike', age: 32 };
+//	return copy;
+//}
+//! конец неправильного решения
+
+//! Вот правильное
 function transferWaitors(data) {
 	const copy = Object.assign({}, data);
 
-	copy.waitors[0] = { name: 'Mike', age: 32 };
+	// Нам просто нужно менять весь массив данных,
+	// а не лезть напрямую менять каждого из сотрудников
+	// Так как это верхний уровень объекта, то значение
+	// будет меняться только у копии
+	copy.waitors = [{ name: 'Mike', age: 32 }];
+
 	return copy;
 }
+//!___________________________
 
 transferWaitors(restorantData);
+//console.log(restorantData);
+//console.log(transferWaitors(restorantData));
