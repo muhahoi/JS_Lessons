@@ -884,57 +884,57 @@
 
 // Но в нынешнем виде мы обнаружили, что после её запуска не только копия данных содержит новых официантов, но и основные данные! В restorantData сотрудник Alice исчезает и заменяется Mike! Необходимо найти причину и немедленно исправить, чтобы данные были разделены.
 
-const restorantData = {
-	menu: [
-		{
-			name: 'Salad Caesar',
-			price: '14$',
-		},
-		{
-			name: 'Pizza Diavola',
-			price: '9$',
-		},
-		{
-			name: 'Beefsteak',
-			price: '17$',
-		},
-		{
-			name: 'Napoleon',
-			price: '7$',
-		},
-	],
-	waitors: [
-		{ name: 'Alice', age: 22 },
-		{ name: 'John', age: 24 },
-	],
-	averageLunchPrice: '20$',
-	openNow: true,
-};
+//const restorantData = {
+//	menu: [
+//		{
+//			name: 'Salad Caesar',
+//			price: '14$',
+//		},
+//		{
+//			name: 'Pizza Diavola',
+//			price: '9$',
+//		},
+//		{
+//			name: 'Beefsteak',
+//			price: '17$',
+//		},
+//		{
+//			name: 'Napoleon',
+//			price: '7$',
+//		},
+//	],
+//	waitors: [
+//		{ name: 'Alice', age: 22 },
+//		{ name: 'John', age: 24 },
+//	],
+//	averageLunchPrice: '20$',
+//	openNow: true,
+//};
 
-function isOpen(prop) {
-	let answer = '';
-	prop ? (answer = 'Открыто') : (answer = 'Закрыто');
+//function isOpen(prop) {
+//	let answer = '';
+//	prop ? (answer = 'Открыто') : (answer = 'Закрыто');
 
-	return answer;
-}
+//	return answer;
+//}
 
-console.log(isOpen(restorantData.openNow));
+//console.log(isOpen(restorantData.openNow));
 
-function isAverageLunchPriceTrue(fDish, sDish, average) {
-	if (parseInt(fDish.price) + parseInt(sDish.price) < parseInt(average)) {
-		return 'Цена ниже средней';
-	} else {
-		return 'Цена выше средней';
-	}
-}
+//function isAverageLunchPriceTrue(fDish, sDish, average) {
+//	if (parseInt(fDish.price) + parseInt(sDish.price) < parseInt(average)) {
+//		return 'Цена ниже средней';
+//	} else {
+//		return 'Цена выше средней';
+//	}
+//}
 
-console.log(
-	isAverageLunchPriceTrue(
-		restorantData.menu[0],
-		restorantData.menu[1],
-		restorantData.averageLunchPrice
-	)
-);
+//console.log(
+//	isAverageLunchPriceTrue(
+//		restorantData.menu[0],
+//		restorantData.menu[1],
+//		restorantData.averageLunchPrice
+//	)
+//);
 //! Неправильное решение. Массивы превращаются в объекты
 //function transferWaitors(data) {
 //	//const copy = structuredClone(data);
@@ -957,19 +957,132 @@ console.log(
 //! конец неправильного решения
 
 //! Вот правильное
-function transferWaitors(data) {
-	const copy = Object.assign({}, data);
+//function transferWaitors(data) {
+//	const copy = Object.assign({}, data);
 
-	// Нам просто нужно менять весь массив данных,
-	// а не лезть напрямую менять каждого из сотрудников
-	// Так как это верхний уровень объекта, то значение
-	// будет меняться только у копии
-	copy.waitors = [{ name: 'Mike', age: 32 }];
+// Нам просто нужно менять весь массив данных,
+// а не лезть напрямую менять каждого из сотрудников
+// Так как это верхний уровень объекта, то значение
+// будет меняться только у копии
+//	copy.waitors = [{ name: 'Mike', age: 32 }];
 
-	return copy;
-}
+//	return copy;
+//}
 //!___________________________
 
-transferWaitors(restorantData);
+//transferWaitors(restorantData);
 //console.log(restorantData);
 //console.log(transferWaitors(restorantData));
+
+//** Рекурсия */
+
+//function pow(x, n) {
+//	let result = 1;
+
+//	for (let i = 1; i <= n; i++) {
+//		result *= x;
+//	}
+//	return result;
+//}
+
+//** вариант */
+//function pow(x, n) {
+//	if (n === 1) {
+//		return x;
+//	} else {
+//		return x * pow(x, n - 1);
+//	}
+//}
+
+//console.log(pow(2, 4));
+//-----------
+
+let students = {
+	js: [
+		{
+			name: 'John',
+			progress: 100,
+		},
+		{
+			name: 'Ivan',
+			progress: 60,
+		},
+	],
+	html: {
+		basic: [
+			{
+				name: 'Peter',
+				progress: 20,
+			},
+			{
+				name: 'Ann',
+				progress: 18,
+			},
+		],
+
+		pro: [
+			{
+				name: 'Sam',
+				progress: 10,
+			},
+		],
+		semi: {
+			students: [
+				{
+					name: 'Test',
+					progress: 100,
+				},
+			],
+		},
+	},
+};
+
+function getTotalProgressByIteration(data) {
+	let total = 0;
+	let students = 0;
+
+	for (let course of Object.values(data)) {
+		if (Array.isArray(course)) {
+			students += course.length; // длина объекта соответствует количеству студентов в нем
+			for (let i = 0; i < course.length; i++) {
+				total += course[i].progress;
+			}
+		} else {
+			for (let subCourse of Object.values(course)) {
+				students += subCourse.length;
+
+				for (let i = 0; i < subCourse.length; i++) {
+					total += subCourse[i].progress;
+				}
+			}
+		}
+	}
+
+	return total / students;
+}
+
+//console.log(getTotalProgressByIteration(students));
+
+function getTotalProgressByRecursion(data) {
+	if (Array.isArray(data)) {
+		let total = 0;
+
+		students += data.length; // длина объекта соответствует количеству студентов в нем
+		for (let i = 0; i < data.length; i++) {
+			total += data[i].progress;
+		}
+		return [total, data.length];
+	} else {
+		let total = [0, 0];
+
+		for (let subData of Object.values(data)) {
+			const subDataArr = getTotalProgressByRecursion(subData);
+			total[0] += subDataArr[0];
+			total[1] += subDataArr[1];
+		}
+		return total;
+	}
+}
+
+const result = getTotalProgressByRecursion(students);
+console.log(result[0] / result[1]);
