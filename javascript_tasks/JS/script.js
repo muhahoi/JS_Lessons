@@ -997,92 +997,126 @@
 //console.log(pow(2, 4));
 //-----------
 
-let students = {
-	js: [
-		{
-			name: 'John',
-			progress: 100,
-		},
-		{
-			name: 'Ivan',
-			progress: 60,
-		},
-	],
-	html: {
-		basic: [
-			{
-				name: 'Peter',
-				progress: 20,
-			},
-			{
-				name: 'Ann',
-				progress: 18,
-			},
-		],
+//let students = {
+//	js: [
+//		{
+//			name: 'John',
+//			progress: 100,
+//		},
+//		{
+//			name: 'Ivan',
+//			progress: 60,
+//		},
+//	],
+//	html: {
+//		basic: [
+//			{
+//				name: 'Peter',
+//				progress: 20,
+//			},
+//			{
+//				name: 'Ann',
+//				progress: 18,
+//			},
+//		],
 
-		pro: [
-			{
-				name: 'Sam',
-				progress: 10,
-			},
-		],
-		semi: {
-			students: [
-				{
-					name: 'Test',
-					progress: 100,
-				},
-			],
-		},
-	},
-};
+//		pro: [
+//			{
+//				name: 'Sam',
+//				progress: 10,
+//			},
+//		],
+//		semi: {
+//			students: [
+//				{
+//					name: 'Test',
+//					progress: 100,
+//				},
+//			],
+//		},
+//	},
+//};
 
-function getTotalProgressByIteration(data) {
-	let total = 0;
-	let students = 0;
+//function getTotalProgressByIteration(data) {
+//	let total = 0;
+//	let students = 0;
 
-	for (let course of Object.values(data)) {
-		if (Array.isArray(course)) {
-			students += course.length; // длина объекта соответствует количеству студентов в нем
-			for (let i = 0; i < course.length; i++) {
-				total += course[i].progress;
-			}
-		} else {
-			for (let subCourse of Object.values(course)) {
-				students += subCourse.length;
+//	for (let course of Object.values(data)) {
+//		if (Array.isArray(course)) {
+//			students += course.length; // длина объекта соответствует количеству студентов в нем
+//			for (let i = 0; i < course.length; i++) {
+//				total += course[i].progress;
+//			}
+//		} else {
+//			for (let subCourse of Object.values(course)) {
+//				students += subCourse.length;
 
-				for (let i = 0; i < subCourse.length; i++) {
-					total += subCourse[i].progress;
-				}
-			}
-		}
+//				for (let i = 0; i < subCourse.length; i++) {
+//					total += subCourse[i].progress;
+//				}
+//			}
+//		}
+//	}
+
+//	return total / students;
+//}
+
+////console.log(getTotalProgressByIteration(students));
+
+//function getTotalProgressByRecursion(data) {
+//	if (Array.isArray(data)) {
+//		let total = 0;
+
+//		students += data.length; // длина объекта соответствует количеству студентов в нем
+//		for (let i = 0; i < data.length; i++) {
+//			total += data[i].progress;
+//		}
+//		return [total, data.length];
+//	} else {
+//		let total = [0, 0];
+
+//		for (let subData of Object.values(data)) {
+//			const subDataArr = getTotalProgressByRecursion(subData);
+//			total[0] += subDataArr[0];
+//			total[1] += subDataArr[1];
+//		}
+//		return total;
+//	}
+//}
+
+//const result = getTotalProgressByRecursion(students);
+//console.log(result[0] / result[1]);
+
+//* Упражнение по написанию кода 16: (*) Задача на рекурсию */
+
+//Напишите функцию, которая вычисляет факториал.
+
+//function factorial(n) {
+//	if (typeof n !== 'number' || n === '' || n === null || n % 1 !== 0) {
+//		return 'Введите целое положительное число';
+//	} else if (n <= 0) {
+//		return 1;
+//	} else if (n === 1) {
+//		return n;
+//	} else {
+//		return n * factorial(n - 1);
+//	}
+//}
+
+//* вариант из ответа */
+
+function factorial(n) {
+	if (typeof n !== 'number' || !Number.isInteger(n)) {
+		return 'Ошибка, проверьте данные';
 	}
 
-	return total / students;
-}
-
-//console.log(getTotalProgressByIteration(students));
-
-function getTotalProgressByRecursion(data) {
-	if (Array.isArray(data)) {
-		let total = 0;
-
-		students += data.length; // длина объекта соответствует количеству студентов в нем
-		for (let i = 0; i < data.length; i++) {
-			total += data[i].progress;
-		}
-		return [total, data.length];
+	if (n >= 1) {
+		return n * factorial(n - 1);
 	} else {
-		let total = [0, 0];
-
-		for (let subData of Object.values(data)) {
-			const subDataArr = getTotalProgressByRecursion(subData);
-			total[0] += subDataArr[0];
-			total[1] += subDataArr[1];
-		}
-		return total;
+		return 1;
 	}
 }
 
-const result = getTotalProgressByRecursion(students);
-console.log(result[0] / result[1]);
+console.log(factorial(5));
+
+//console.log(10.1 % 1 !== 0);
