@@ -20,7 +20,9 @@ const movieDB = {
 		'Лига справедливости',
 		'Ла-ла лэнд',
 		'Одержимость',
-		'Cкотт Пилигрим против...',
+		'Скотт Пилигрим против...',
+		'ббб',
+		'ddd',
 	],
 };
 
@@ -37,38 +39,83 @@ const poster = document.querySelector('.promo__bg');
 
 poster.style.cssText = 'background-image: url(../img/bg.jpg)';
 
+// Задача 2: Настроил сортировку в существующем массиве
+movieDB.movies = movieDB.movies.map(item => item.toUpperCase()).sort();
+
 const movieList = document.querySelector('.promo__interactive-list');
-movieList.innerHTML = '';
 
-movieDB.movies.sort();
-
-movieDB.movies.forEach((film, i) => {
-	movieList.innerHTML += `
-	  <li class="promo__interactive-item">${i + 1} ${film}
-	  		<div class="delete"></div>
-	  </li>
+//Задача 2: перенес код в функцию для переиспользования
+function createList() {
+	movieList.innerHTML = '';
+	movieDB.movies.forEach((film, i) => {
+		movieList.innerHTML += `
+	<li class="promo__interactive-item">${i + 1} ${film}
+	<div class="delete"></div>
+	</li>
 	`;
+	});
+}
+createList();
+
+// Задача 2: Получил элемент поля ввода
+const inputElement = document.querySelector(
+	'.promo__interactive .add input[type="text"]'
+);
+
+// Задача 2: Получил элемент кнопки ввода
+const inputButton = document.querySelector('.promo__interactive .add button');
+
+// Задача 2: При клике должна запускаться функция добавления фильма
+inputButton.addEventListener('click', () => {
+	event.preventDefault();
+	let name = inputElement.value.toUpperCase();
+	if (name.length > 21) {
+		name = name.slice(0, 21) + '...';
+	}
+
+	// проверка введено ли что-то
+	if (inputElement.value && !movieDB.movies.includes(name)) {
+		addMovie();
+	} else {
+		inputElement.value = '';
+	}
 });
 
-/* Задания на урок:
+// Задача 2: Функция добавления фильма
+function addMovie() {
+	event.preventDefault(); //отключаю стандартное поведение браузера
+	let movieName = inputElement.value.slice(0, 21).toUpperCase();
+	if (inputElement.value.length > 21) {
+		movieName += '...';
+	}
+	movieDB.movies.push(movieName); // добавляю в массив содержимое поля ввода
+	movieDB.movies.sort(); // снова сортировка
 
-1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
-новый фильм добавляется в список. Страница не должна перезагружаться.
-Новый фильм должен добавляться в movieDB.movies.
-Для получения доступа к значению input - обращаемся к нему как input.value;
-P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+	createList(); //создаю заново список фильмов
+	inputElement.value = ''; // очищаю поле ввода после нажатия кнопки
+}
 
-2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+// Задача 2: Получил элемент кнопки удаления
+const deleteButton = document.querySelectorAll('.delete');
 
-3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
+movieList.addEventListener('click', event => {
+	if (event.target.classList.contains('delete')) {
+		// вот это долго не мог отловить, помог gpt
+		deleteMovie(event.target.previousSibling);
+	}
+});
 
-4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
-"Добавляем любимый фильм"
+function deleteMovie(name) {
+	const str = name.textContent.slice(2, -2); //удалил нумерацию с пробелом и два пустых символа в конце
+	const index = movieDB.movies.indexOf(str);
+	movieDB.movies.splice(index, 1);
+	createList();
+}
 
-5) Фильмы должны быть отсортированы по алфавиту */
-
-const addButton = document.querySelector('.promo__interactive .add button');
-addButton.addEventListener('click', () => {
-	movieDB.movies.push('777');
-	console.log(movieDB.movies);
+// галочка
+const checkbox = document.querySelector('input[type="checkbox"]');
+checkbox.addEventListener('click', event => {
+	if (checkbox.checked) {
+		console.log('Добавляем любимый фильм');
+	}
 });
