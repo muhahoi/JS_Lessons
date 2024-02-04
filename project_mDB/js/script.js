@@ -1,121 +1,105 @@
 /* Задания на урок:
 
-1) Удалить все рекламные блоки со страницы (правая часть сайта)
+1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+новый фильм добавляется в список. Страница не должна перезагружаться.
+Новый фильм должен добавляться в movieDB.movies.
+Для получения доступа к значению input - обращаемся к нему как input.value;
+P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
 
-2) Изменить жанр фильма, поменять "комедия" на "драма"
+2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
 
-3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
-Реализовать только при помощи JS
+3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
 
-4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
+4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+"Добавляем любимый фильм"
 
-5) Добавить нумерацию выведенных фильмов */
+5) Фильмы должны быть отсортированы по алфавиту */
 
 'use strict';
 
-const movieDB = {
-	movies: [
-		'Логан',
-		'Лига справедливости',
-		'Ла-ла лэнд',
-		'Одержимость',
-		'Скотт Пилигрим против...',
-		'ббб',
-		'ddd',
-	],
-};
+//код сработает тогда когда DOM структура будет загружена полностью
+document.addEventListener('DOMContentLoaded', () => {
+	const movieDB = {
+		movies: [
+			'Логан',
+			'Лига справедливости',
+			'Ла-ла лэнд',
+			'Одержимость',
+			'Скотт Пилигрим против...',
+		],
+	};
 
-const adv = document.querySelectorAll('.promo__adv img');
+	const adv = document.querySelectorAll('.promo__adv img'),
+		poster = document.querySelector('.promo__bg'),
+		genre = poster.querySelector('.promo__genre'),
+		movieList = document.querySelector('.promo__interactive-list'),
+		addForm = document.querySelector('form.add'),
+		addInput = addForm.querySelector('.adding__input'),
+		checkbox = addForm.querySelector('[type="checkbox"]');
 
-adv.forEach(item => {
-	item.remove();
-});
+	addForm.addEventListener('submit', event => {
+		event.preventDefault();
 
-const genre = document.querySelector('.promo__genre');
-genre.textContent = 'драма';
+		let newFilm = addInput.value;
+		const favorite = checkbox.checked;
 
-const poster = document.querySelector('.promo__bg');
+		if (newFilm) {
+			if (newFilm.length > 21) {
+				newFilm = `${newFilm.substring(0, 22)}...`;
+			}
 
-poster.style.cssText = 'background-image: url(../img/bg.jpg)';
+			if (favorite) {
+				console.log('Добавляем любимый фильм');
+			}
 
-// Задача 2: Настроил сортировку в существующем массиве
-movieDB.movies = movieDB.movies.map(item => item.toUpperCase()).sort();
+			movieDB.movies.push(newFilm);
+			sortArr(movieDB.movies);
 
-const movieList = document.querySelector('.promo__interactive-list');
+			createMovieList(movieDB.movies, movieList);
+		}
 
-//Задача 2: перенес код в функцию для переиспользования
-function createList() {
-	movieList.innerHTML = '';
-	movieDB.movies.forEach((film, i) => {
-		movieList.innerHTML += `
-	<li class="promo__interactive-item">${i + 1} ${film}
-	<div class="delete"></div>
-	</li>
-	`;
+		event.target.reset();
 	});
-}
-createList();
 
-// Задача 2: Получил элемент поля ввода
-const inputElement = document.querySelector(
-	'.promo__interactive .add input[type="text"]'
-);
+	const deleteAdv = arr => {
+		arr.forEach(item => {
+			item.remove();
+		});
+	};
 
-// Задача 2: Получил элемент кнопки ввода
-const inputButton = document.querySelector('.promo__interactive .add button');
+	const makeChanges = () => {
+		genre.textContent = 'драма';
 
-// Задача 2: При клике должна запускаться функция добавления фильма
-inputButton.addEventListener('click', () => {
-	event.preventDefault();
-	let name = inputElement.value.toUpperCase();
-	if (name.length > 21) {
-		name = name.slice(0, 21) + '...';
+		poster.style.backgroundImage = 'url("img/bg.jpg")';
+	};
+
+	const sortArr = arr => {
+		arr.sort();
+	};
+
+	function createMovieList(films, parent) {
+		parent.innerHTML = '';
+		sortArr(films);
+
+		films.forEach((film, i) => {
+			parent.innerHTML += `
+                <li class="promo__interactive-item">${i + 1} ${film}
+                    <div class="delete"></div>
+                </li>
+            `;
+		});
+
+		document.querySelectorAll('.delete').forEach((btn, i) => {
+			btn.addEventListener('click', () => {
+				btn.parentElement.remove();
+				movieDB.movies.splice(i, 1);
+
+				createMovieList(films, parent);
+			});
+		});
 	}
 
-	// проверка введено ли что-то
-	if (inputElement.value && !movieDB.movies.includes(name)) {
-		addMovie();
-	} else {
-		inputElement.value = '';
-	}
-});
-
-// Задача 2: Функция добавления фильма
-function addMovie() {
-	event.preventDefault(); //отключаю стандартное поведение браузера
-	let movieName = inputElement.value.slice(0, 21).toUpperCase();
-	if (inputElement.value.length > 21) {
-		movieName += '...';
-	}
-	movieDB.movies.push(movieName); // добавляю в массив содержимое поля ввода
-	movieDB.movies.sort(); // снова сортировка
-
-	createList(); //создаю заново список фильмов
-	inputElement.value = ''; // очищаю поле ввода после нажатия кнопки
-}
-
-// Задача 2: Получил элемент кнопки удаления
-const deleteButton = document.querySelectorAll('.delete');
-
-movieList.addEventListener('click', event => {
-	if (event.target.classList.contains('delete')) {
-		// вот это долго не мог отловить, помог gpt
-		deleteMovie(event.target.previousSibling);
-	}
-});
-
-function deleteMovie(name) {
-	const str = name.textContent.slice(2, -2); //удалил нумерацию с пробелом и два пустых символа в конце
-	const index = movieDB.movies.indexOf(str);
-	movieDB.movies.splice(index, 1);
-	createList();
-}
-
-// галочка
-const checkbox = document.querySelector('input[type="checkbox"]');
-checkbox.addEventListener('click', event => {
-	if (checkbox.checked) {
-		console.log('Добавляем любимый фильм');
-	}
+	deleteAdv(adv);
+	makeChanges();
+	createMovieList(movieDB.movies, movieList);
 });
