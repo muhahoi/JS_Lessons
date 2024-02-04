@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script async src="JS/script.js"></script> //страница загружается и не ждет асинхронных скриптов, содержимое
+	обрабатывается и отображается. Асинхронные скрипты и DOMContentLoaded не ждут друг друга
+	<script async src="JS/test.js"></script>
+	<!--<script defer src="JS/script.js"></script> //скрипты с атрибутом defer всегда выполняются когда DOM дерево уже готовоб
+	но срабатывают до события DOMContentLoaded
+	<script defer src="JS/test.js"></script> //будет дожидаться выполнения верхнего скрипта-->
+	<p>Hello World!</p>
+	<p>Second message</p>
+</body>
+
+</html>
