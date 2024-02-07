@@ -1105,18 +1105,52 @@
 
 //* вариант из ответа */
 
-function factorial(n) {
-	if (typeof n !== 'number' || !Number.isInteger(n)) {
-		return 'Ошибка, проверьте данные';
-	}
+//function factorial(n) {
+//	if (typeof n !== 'number' || !Number.isInteger(n)) {
+//		return 'Ошибка, проверьте данные';
+//	}
 
-	if (n >= 1) {
-		return n * factorial(n - 1);
-	} else {
-		return 1;
-	}
+//	if (n >= 1) {
+//		return n * factorial(n - 1);
+//	} else {
+//		return 1;
+//	}
+//}
+
+//console.log(factorial(5));
+
+////console.log(10.1 % 1 !== 0);
+
+//*Упражнение по написанию кода 17
+//В каждой книге есть n страниц с номерами страниц от 1 до n. Написать функцию amountOfPages, аргумент которой summary составляется путем сложения количества цифр всех номеров страниц. Эта функция возвращает число - количество страниц n в книге. Чтобы было понятно что такое количество цифр, давайте рассмотрим примеры.
+
+//Пример:
+
+//Если на входе функции summary = 25, то на результат должен быть 17. Всего в числах от 1 до 17 содержится 25 цифр: 1234567891011121314151617.
+
+//Функция на вход как раз принимает это общее количество цифр, а возвращает конечное число, то есть последнюю страницу книги.
+
+//function amountOfPages(summary) {
+//	let str = '';
+//	for (let i = 1; i <= summary; i++) {
+//		str += i;
+//		if (str.length < summary) continue;
+//		return i;
+//	}
+//}
+
+//let aaa = amountOfPages(1095);
+
+//console.log(aaa);
+
+//*Упражнение по написанию кода 18
+//Панграмма — это предложение, в котором каждая буква алфавита встречается хотя бы по одному разу по возможности без повторений. Например, предложение «The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dog» является панграммой, поскольку в нем хотя бы один раз используются буквы от A до Z (регистр значения не имеет).
+
+//Напишите функцию isPangram, которая принимает в себя строку и возвращает логическое значение. Если строка является панграммой - вернется true, если нет - false.
+
+function isPangram(string) {
+	let strWithoutSpaces = string.split(' ').join('');
+	return Array.from(new Set(strWithoutSpaces.toLowerCase())).length == 26;
 }
 
-console.log(factorial(5));
-
-//console.log(10.1 % 1 !== 0);
+console.log(isPangram('The quick brown fox jumps over the lazy dog'));
