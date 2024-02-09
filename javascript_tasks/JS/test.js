@@ -1,15 +1,5 @@
-//function powqa(x, n) {
-//	if (n === 1) {
-//		return x;
-//	} else {
-//		return x * powqa(x, n - 1);
-//	}
-//}
-
-//console.log(powqa(2, 4));
-
 function deepCount(a) {
-	if (!Array.isArray(a) || !a.some(elem => Array.isArray(elem))) {
+	if (!a.some(elem => Array.isArray(elem))) {
 		return a.length;
 	} else {
 		return a.reduce(function (acc, val) {
