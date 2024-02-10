@@ -1169,7 +1169,7 @@
 
 ////deepCount([[[[[[[[[]]]]]]]]]) => 8
 //function deepCount(a) {
-//	if (!Array.isArray(a) || !a.some(elem => Array.isArray(elem))) {
+//	if (!a.some(elem => Array.isArray(elem))) {
 //		return a.length;
 //	} else {
 //		return a.reduce(function (acc, val) {
