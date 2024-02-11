@@ -43,14 +43,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	// функция определяет разницу между deadline и  текущим временем
 	function getTimeRemaining(endtime) {
+		let days, hours, minutes, seconds;
 		//считаем разницу между датами
-		const t = Date.parse(endtime) - Date.parse(new Date()),
-			// Date.parse(endtime) - получаем количество миллисекунд, которое будет в нашем конечном времени endtime
-			// Date.parse(new Date()) - // - текущее время
-			days = Math.floor(t / (1000 * 60 * 60 * 24)), // количество суток до deadline
-			hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-			minutes = Math.floor((t / 1000 / 60) % 60),
-			seconds = Math.floor((t / 1000) % 60);
+		const t = Date.parse(endtime) - Date.parse(new Date());
+		// Date.parse(endtime) - получаем количество миллисекунд, которое будет в нашем конечном времени endtime
+		// Date.parse(new Date()) - // - текущее время
+
+		if (t <= 0) {
+			// если дата deadline в прошлом
+			days = 0;
+			hours = 0;
+			minutes = 0;
+			seconds = 0;
+		} else {
+			(days = Math.floor(t / (1000 * 60 * 60 * 24))), // количество суток до deadline
+				(hours = Math.floor((t / (1000 * 60 * 60)) % 24)),
+				(minutes = Math.floor((t / 1000 / 60) % 60)),
+				(seconds = Math.floor((t / 1000) % 60));
+		}
 
 		return {
 			total: t,
