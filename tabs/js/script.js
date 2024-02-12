@@ -107,4 +107,41 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	setClock('.timer', deadline);
+
+	//* Modal
+
+	const modalTriggerBtn = document.querySelectorAll('[data-modal]'),
+		modalCloseBtn = document.querySelector('[data-close]'),
+		modal = document.querySelector('.modal');
+
+	modalTriggerBtn.forEach(btn => {
+		btn.addEventListener('click', () => {
+			modal.classList.add('show');
+			modal.classList.remove('hide');
+			document.body.style.overflow = 'hidden'; // запрет прокрутки
+		});
+	});
+
+	function closeModal() {
+		modal.classList.add('hide');
+		modal.classList.remove('show');
+		document.body.style.overflow = '';
+	}
+
+	modalCloseBtn.addEventListener('click', closeModal); // функция добавляется без скобок
+
+	// закрываем модальное окно по клику на пустое место
+	modal.addEventListener('click', e => {
+		if (e.target === modal) {
+			closeModal();
+		}
+	});
+
+	// закрытие modal по кнопке Escape
+	document.addEventListener('keydown', e => {
+		if (e.code === 'Escape' && modal.classList.contains('show')) {
+			//keycode.info
+			closeModal();
+		}
+	});
 });
