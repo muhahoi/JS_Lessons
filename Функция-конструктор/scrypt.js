@@ -1,30 +1,30 @@
 'use strict';
 
-// создаем конструктор
+ Создаем конструктор
 
-//function User(name, id) {
-//	this.name = name;
-//	this.id = id;
-//	this.human = true;
-//	this.hello = function () {
-//		console.log(`Hello, ${this.name}`);
-//	};
-//}
+function User(name, id) {
+	this.name = name;
+	this.id = id;
+	this.human = true;
+	this.hello = function () {
+		console.log(`Hello, ${this.name}`);
+	};
+}
 
-//Все юзеры созданные после этого прототипа будут иметь этот метод
-//User.prototype.exit = function () {
-//	console.log(`Пользователь ${this.name} вышел`);
-//};
+Все юзеры созданные после этого прототипа будут иметь этот метод
+User.prototype.exit = function () {
+	console.log(`Пользователь ${this.name} вышел`);
+};
 
-//const ivan = new User('Ivan', 28);
-//const alex = new User('Alex', 20);
+const ivan = new User('Ivan', 28);
+const alex = new User('Alex', 20);
 
-//alex.exit(); // Пользователь Alex вышел
+alex.exit(); // Пользователь Alex вышел
 
-//console.log(alex);
-// User { name: 'Alex', id: 20, human: true,  hello: [Function (anonymous)] }
+console.log(alex);
+ User { name: 'Alex', id: 20, human: true,  hello: [Function (anonymous)] }
 
-//alex.hello(); // Hello, Alex
+alex.hello(); // Hello, Alex
 
 //* Классы
 class User {
