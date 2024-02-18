@@ -1,4 +1,4 @@
-'use script';
+'use strict';
 
 // 1) обычная функция: this = windows, а если use strict -undefined
 //function showThis() {
