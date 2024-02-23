@@ -53,34 +53,42 @@ const data = [
 	},
 ];
 
-//data.push([]);
+function createSubArrObjectsMore5Mins(array) {
+	const newArr = [...array];
+	const arr = [];
+	for (let key of array) {
+		if (Date.parse(key.to) - Date.parse(key.from) > 300000) {
+			arr.push(key);
+		}
+	}
+	newArr.push(arr);
+	return newArr;
+}
+console.log(createSubArrObjectsMore5Mins(data));
 
-//function pushInterval(array) {
+/*Написать функцию, которая вернет только массив объектов, продолжительность которых больше 5ти минут. Ориентироваться на результат:*/
+
+//function getInterval(array) {
+//	const arr = [];
 //	for (let key of array) {
 //		let interval = Date.parse(key.to) - Date.parse(key.from);
-
 //		if (interval > 300000) {
-//			array[array.length - 1].push(key);
+//			arr.push(key);
 //		}
 //	}
+//	return arr;
 //}
-//pushInterval(data);
-//console.log(data);
 
-//const products = [
-//	{ name: 'sports car' },
-//	{ name: 'laptop' },
-//	{ name: 'phone' },
-//];
+//console.log(getInterval(data));
 
-//products.map(product => {
-//	product.price = 100;
-//});
-
-//console.log(products);
-
-data.map(key => {
-	return Date.parse(key.to) - Date.parse(key.from) > 300000;
-});
-
-console.log(data);
+function createSubArrObjectsMore5Mins(arr) {
+	return [
+		...arr,
+		arr.reduce((acc, curr) => {
+			if (Date.parse(curr.to) - Date.parse(curr.from) > 300000) {
+				acc.push(curr);
+			}
+			return acc;
+		}, []),
+	];
+}
