@@ -1294,8 +1294,7 @@
 
 //function getInterval(array) {
 //	const arr = [];
-//	for (let key of array) {
-//		let interval = Date.parse(key.to) - Date.parse(key.from);
+//	for (let key of array) {//		let interval = Date.parse(key.to) - Date.parse(key.from);
 //		if (interval > 300000) {
 //			arr.push(key);
 //		}
@@ -1316,3 +1315,52 @@
 //		}, []),
 //	];
 //}
+
+//*Задача
+
+/*Вы получаете массив массивов.
+Если вы отсортируете массивы по длине, вы увидите, что их значения длины являются последовательными.
+Но одного массива не хватает!
+Вам нужно написать метод, который возвращает длину отсутствующего массива.
+Если массив массивов имеет значение null/nil или пуст, метод должен вернуть 0.
+Если массив в массиве имеет значение NULL или пуст, метод также должен возвращать 0!
+Всегда будет отсутствующий элемент, и его длина всегда будет находиться между заданными массивами.*/
+
+//let arrayOfArrays = [[1], null, [5, 6, 7, 8, 9]];
+
+//* длинный вариант
+//function getLengthOfMissingArray(arrayOfArrays) {
+//	if (
+//		!arrayOfArrays ||
+//		arrayOfArrays.length === 0 ||
+//		arrayOfArrays.includes(null) ||
+//		arrayOfArrays.find(item => item.length === 0)
+//	) {
+//		return 0;
+//	} else {
+//		return (
+//			arrayOfArrays
+//				.sort((a, b) => a.length - b.length)
+//				.reduce((acc, curr) => {
+//					return curr.length - acc.length === 1 ? curr : acc;
+//				}).length + 1
+//		);
+//	}
+//}
+//
+
+//* короткий вариант
+
+function getLengthOfMissingArray(arrayOfArrays) {
+	return !arrayOfArrays ||
+		arrayOfArrays.length === 0 ||
+		arrayOfArrays.includes(null) ||
+		arrayOfArrays.find(item => item.length === 0)
+		? 0
+		: arrayOfArrays
+				.sort((a, b) => a.length - b.length)
+				.reduce((acc, curr) => {
+					return curr.length - acc.length === 1 ? curr : acc;
+				}).length + 1;
+}
+console.log(getLengthOfMissingArray(arrayOfArrays));
