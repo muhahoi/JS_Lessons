@@ -1432,4 +1432,4 @@ const tranformedArray = setFilmsIds(films);
 function checkFilms(arr) {
 	return arr.every(obj => 'id' in obj);
 }
-console.log(checkFilms(tranformedArray));
+console.log(checkFilms(films));
